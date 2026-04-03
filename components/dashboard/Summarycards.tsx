@@ -1,8 +1,19 @@
 "use client";
 
 import { useFinanceStore } from "@/store/useFinanceStore";
-import { getTotalIncome, getTotalExpenses, getBalance, formatCurrency } from "@/lib/utils";
-import { TrendingUp, TrendingDown, Wallet, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import {
+  getTotalIncome,
+  getTotalExpenses,
+  getBalance,
+  formatCurrency,
+} from "@/lib/utils";
+import {
+  TrendingUp,
+  TrendingDown,
+  Wallet,
+  ArrowUpRight,
+  ArrowDownRight,
+} from "lucide-react";
 import clsx from "clsx";
 
 export default function SummaryCards() {
@@ -30,7 +41,11 @@ export default function SummaryCards() {
       iconBg: "bg-blue-500/10",
       iconColor: "text-blue-400",
       valueColor: "text-white",
-      trend: { icon: ArrowUpRight, color: "text-emerald-400", label: "All time" },
+      trend: {
+        icon: ArrowUpRight,
+        color: "text-emerald-400",
+        label: "All time",
+      },
       sub: "All sources",
     },
     {
@@ -40,7 +55,11 @@ export default function SummaryCards() {
       iconBg: "bg-red-500/10",
       iconColor: "text-red-400",
       valueColor: "text-white",
-      trend: { icon: ArrowDownRight, color: "text-red-400", label: "All categories" },
+      trend: {
+        icon: ArrowDownRight,
+        color: "text-red-400",
+        label: "All categories",
+      },
       sub: "All categories",
     },
     {
@@ -69,7 +88,12 @@ export default function SummaryCards() {
                 <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
                   {card.label}
                 </p>
-                <p className={clsx("mt-2 text-2xl font-bold tracking-tight", card.valueColor)}>
+                <p
+                  className={clsx(
+                    "mt-2 text-2xl font-bold tracking-tight",
+                    card.valueColor,
+                  )}
+                >
                   {card.value}
                 </p>
                 <p className="mt-1 text-xs text-zinc-600">{card.sub}</p>

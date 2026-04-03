@@ -7,25 +7,25 @@ import { Transaction } from "@/types/types";
 
 import { Pencil, Trash2, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import clsx from "clsx";
-import TransactionModal from "./Transactionmodal";
-
+import TransactionModal from "./TransactionModal";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Food & Dining": "bg-orange-500/10 text-orange-400",
-  "Transport": "bg-blue-500/10 text-blue-400",
-  "Shopping": "bg-pink-500/10 text-pink-400",
-  "Entertainment": "bg-purple-500/10 text-purple-400",
-  "Health": "bg-red-500/10 text-red-400",
-  "Housing": "bg-yellow-500/10 text-yellow-400",
-  "Utilities": "bg-cyan-500/10 text-cyan-400",
-  "Salary": "bg-emerald-500/10 text-emerald-400",
-  "Freelance": "bg-teal-500/10 text-teal-400",
-  "Investment": "bg-indigo-500/10 text-indigo-400",
-  "Other": "bg-zinc-500/10 text-zinc-400",
+  Transport: "bg-blue-500/10 text-blue-400",
+  Shopping: "bg-pink-500/10 text-pink-400",
+  Entertainment: "bg-purple-500/10 text-purple-400",
+  Health: "bg-red-500/10 text-red-400",
+  Housing: "bg-yellow-500/10 text-yellow-400",
+  Utilities: "bg-cyan-500/10 text-cyan-400",
+  Salary: "bg-emerald-500/10 text-emerald-400",
+  Freelance: "bg-teal-500/10 text-teal-400",
+  Investment: "bg-indigo-500/10 text-indigo-400",
+  Other: "bg-zinc-500/10 text-zinc-400",
 };
 
 export default function TransactionTable() {
-  const { role, deleteTransaction, getFilteredTransactions } = useFinanceStore();
+  const { role, deleteTransaction, getFilteredTransactions } =
+    useFinanceStore();
   const isAdmin = role === "admin";
   const transactions = getFilteredTransactions();
   const [editing, setEditing] = useState<Transaction | null>(null);
@@ -34,7 +34,9 @@ export default function TransactionTable() {
     return (
       <div className="rounded-xl border border-zinc-800 bg-zinc-900 py-16 text-center">
         <p className="text-zinc-500 text-sm">No transactions found.</p>
-        <p className="text-zinc-600 text-xs mt-1">Try adjusting your filters.</p>
+        <p className="text-zinc-600 text-xs mt-1">
+          Try adjusting your filters.
+        </p>
       </div>
     );
   }
@@ -42,7 +44,10 @@ export default function TransactionTable() {
   return (
     <>
       {editing && (
-        <TransactionModal transaction={editing} onClose={() => setEditing(null)} />
+        <TransactionModal
+          transaction={editing}
+          onClose={() => setEditing(null)}
+        />
       )}
 
       {/* Desktop table */}
@@ -50,7 +55,14 @@ export default function TransactionTable() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-zinc-800">
-              {["Date", "Description", "Category", "Type", "Amount", ...(isAdmin ? ["Actions"] : [])].map((h) => (
+              {[
+                "Date",
+                "Description",
+                "Category",
+                "Type",
+                "Amount",
+                ...(isAdmin ? ["Actions"] : []),
+              ].map((h) => (
                 <th
                   key={h}
                   className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500"
@@ -66,12 +78,15 @@ export default function TransactionTable() {
                 <td className="px-4 py-3 text-sm text-zinc-400 whitespace-nowrap">
                   {formatDate(t.date)}
                 </td>
-                <td className="px-4 py-3 text-sm text-zinc-200">{t.description}</td>
+                <td className="px-4 py-3 text-sm text-zinc-200">
+                  {t.description}
+                </td>
                 <td className="px-4 py-3">
                   <span
                     className={clsx(
                       "rounded px-2 py-0.5 text-xs font-medium",
-                      CATEGORY_COLORS[t.category] || "bg-zinc-700 text-zinc-300"
+                      CATEGORY_COLORS[t.category] ||
+                        "bg-zinc-700 text-zinc-300",
                     )}
                   >
                     {t.category}
@@ -81,20 +96,25 @@ export default function TransactionTable() {
                   <span
                     className={clsx(
                       "flex items-center gap-1 text-xs font-medium capitalize w-fit",
-                      t.type === "income" ? "text-emerald-400" : "text-red-400"
+                      t.type === "income" ? "text-emerald-400" : "text-red-400",
                     )}
                   >
-                    {t.type === "income" ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
+                    {t.type === "income" ? (
+                      <ArrowUpRight size={12} />
+                    ) : (
+                      <ArrowDownRight size={12} />
+                    )}
                     {t.type}
                   </span>
                 </td>
                 <td
                   className={clsx(
                     "px-4 py-3 text-sm font-semibold whitespace-nowrap",
-                    t.type === "income" ? "text-emerald-400" : "text-red-400"
+                    t.type === "income" ? "text-emerald-400" : "text-red-400",
                   )}
                 >
-                  {t.type === "income" ? "+" : "-"}{formatCurrency(t.amount)}
+                  {t.type === "income" ? "+" : "-"}
+                  {formatCurrency(t.amount)}
                 </td>
                 {isAdmin && (
                   <td className="px-4 py-3">
@@ -129,27 +149,33 @@ export default function TransactionTable() {
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="truncate font-medium text-zinc-200 text-sm">{t.description}</p>
+                <p className="truncate font-medium text-zinc-200 text-sm">
+                  {t.description}
+                </p>
                 <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                   <span
                     className={clsx(
                       "rounded px-1.5 py-0.5 text-xs font-medium",
-                      CATEGORY_COLORS[t.category] || "bg-zinc-700 text-zinc-300"
+                      CATEGORY_COLORS[t.category] ||
+                        "bg-zinc-700 text-zinc-300",
                     )}
                   >
                     {t.category}
                   </span>
-                  <span className="text-xs text-zinc-600">{formatDate(t.date)}</span>
+                  <span className="text-xs text-zinc-600">
+                    {formatDate(t.date)}
+                  </span>
                 </div>
               </div>
               <div className="text-right shrink-0">
                 <p
                   className={clsx(
                     "font-semibold text-sm",
-                    t.type === "income" ? "text-emerald-400" : "text-red-400"
+                    t.type === "income" ? "text-emerald-400" : "text-red-400",
                   )}
                 >
-                  {t.type === "income" ? "+" : "-"}{formatCurrency(t.amount)}
+                  {t.type === "income" ? "+" : "-"}
+                  {formatCurrency(t.amount)}
                 </p>
                 {isAdmin && (
                   <div className="flex items-center gap-1 mt-2 justify-end">

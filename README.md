@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FinanceBoard — Premium Finance Dashboard
 
-## Getting Started
+A clean, interactive, and high-performance finance dashboard built with Next.js, Zustand, and Recharts. Track your income, expenses, and savings with ease.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Financial Summary**: Real-time overview of Total Balance, Income, Expenses, and Savings rate.
+- **Interactive Charts**:
+  - **Balance Trend**: Monthly income vs expenses visualization using area charts.
+  - **Spending Breakdown**: Categorical expense analysis with interactive pie charts.
+  - **Monthly Insights**: Side-by-side comparison bar charts.
+- **Transaction Management**:
+  - Full CRUD operations (Add, Edit, Delete).
+  - Advanced filtering by Search, Category, and Transaction Type.
+  - Multi-criteria sorting (Date, Amount).
+- **Role-Based UI**:
+  - **Admin**: Full access to manage transactions.
+  - **Viewer**: Read-only access to insights and data.
+- **Insights Engine**: Automatically calculates highest spending categories and monthly comparisons.
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop views.
+- **Dark Mode**: Sleek zinc-based dark theme for a premium feel.
+- **State Persistence**: Data is saved to local storage, ensuring your progress is never lost.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Fonts**: [Geist](https://vercel.com/font)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18.x or later
+- npm or pnpm
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository:
 
-## Deploy on Vercel
+   ```bash
+   git clone <repository-url>
+   cd finance-dashboard
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) to see the application.
+
+## 📖 Architecture Notes
+
+- **Store**: Uses Zustand's `persist` middleware for easy state management and local storage synchronization.
+- **Components**: Modular and atomic design pattern used for reusability.
+- **Utilities**: Centralized logic in `lib/utils.ts` for financial calculations and data transformations.
+- **Role Simulation**: Controlled via a global state toggle in the Navbar, demonstrating dynamic UI adaptation.
+
+---
+
+Built with ❤️ for excellence in financial tracking.
