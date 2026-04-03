@@ -18,7 +18,11 @@ const COLORS = [
 interface CustomTooltipProps {
   active?: boolean;
   payload?: Array<{
-    payload: any;
+    payload: {
+      category: string;
+      amount: number;
+      percentage: number;
+    };
     dataKey: string;
     value: number;
     color: string;
@@ -30,10 +34,10 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const d = payload[0].payload;
     return (
-      <div className="rounded-lg border border-zinc-700 bg-zinc-900 p-3 text-sm shadow-xl">
-        <p className="font-medium text-white">{d.category}</p>
-        <p className="text-zinc-400">{formatCurrency(d.amount)}</p>
-        <p className="text-zinc-500">{d.percentage}% of expenses</p>
+      <div className="rounded-lg border border-border bg-card p-3 text-sm shadow-xl">
+        <p className="font-medium text-foreground">{d.category}</p>
+        <p className="text-muted-foreground">{formatCurrency(d.amount)}</p>
+        <p className="text-muted-foreground/60">{d.percentage}% of expenses</p>
       </div>
     );
   }
@@ -45,10 +49,12 @@ export default function SpendingBreakdown() {
   const data = getCategoryBreakdown(transactions).slice(0, 8);
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
+    <div className="rounded-xl border border-border bg-card p-5 h-full">
       <div className="mb-4">
-        <h2 className="font-semibold text-white">Spending by Category</h2>
-        <p className="text-xs text-zinc-500 mt-0.5">Expense breakdown</p>
+        <h2 className="font-semibold text-foreground">Spending by Category</h2>
+        <p className="text-xs text-muted-foreground mt-0.5">
+          Expense breakdown
+        </p>
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -86,11 +92,11 @@ export default function SpendingBreakdown() {
                   className="h-2 w-2 shrink-0 rounded-full"
                   style={{ backgroundColor: COLORS[index % COLORS.length] }}
                 />
-                <span className="truncate text-xs text-zinc-400">
+                <span className="truncate text-xs text-muted-foreground">
                   {item.category}
                 </span>
               </div>
-              <span className="text-xs font-medium text-zinc-300 shrink-0">
+              <span className="text-xs font-medium text-foreground shrink-0">
                 {item.percentage}%
               </span>
             </div>

@@ -18,11 +18,16 @@ interface FinanceStore {
 
   setRole: (role: Role) => void;
   addTransaction: (transaction: Omit<Transaction, "id">) => void;
-  updateTransaction: (id: string, data: Partial<Omit<Transaction, "id">>) => void;
+  updateTransaction: (
+    id: string,
+    data: Partial<Omit<Transaction, "id">>,
+  ) => void;
   deleteTransaction: (id: string) => void;
   setFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   resetFilters: () => void;
   getFilteredTransactions: () => Transaction[];
+  resetStore: () => void;
+  importData: (transactions: Transaction[]) => void;
 }
 
 const defaultFilters: Filters = {
@@ -53,7 +58,7 @@ export const useFinanceStore = create<FinanceStore>()(
       updateTransaction: (id, data) =>
         set((state) => ({
           transactions: state.transactions.map((t) =>
-            t.id === id ? { ...t, ...data } : t
+            t.id === id ? { ...t, ...data } : t,
           ),
         })),
 
@@ -78,7 +83,7 @@ export const useFinanceStore = create<FinanceStore>()(
           result = result.filter(
             (t) =>
               t.description.toLowerCase().includes(q) ||
-              t.category.toLowerCase().includes(q)
+              t.category.toLowerCase().includes(q),
           );
         }
 
@@ -92,7 +97,8 @@ export const useFinanceStore = create<FinanceStore>()(
 
         result.sort((a, b) => {
           if (filters.sortBy === "date") {
-            const diff = new Date(a.date).getTime() - new Date(b.date).getTime();
+            const diff =
+              new Date(a.date).getTime() - new Date(b.date).getTime();
             return filters.sortOrder === "asc" ? diff : -diff;
           } else {
             const diff = a.amount - b.amount;
@@ -102,6 +108,18 @@ export const useFinanceStore = create<FinanceStore>()(
 
         return result;
       },
+
+      resetStore: () =>
+        set({
+          transactions: mockTransactions,
+          role: "viewer",
+          filters: defaultFilters,
+        }),
+
+      importData: (transactions) =>
+        set({
+          transactions: transactions,
+        }),
     }),
     {
       name: "finance-dashboard-store",
@@ -109,6 +127,6 @@ export const useFinanceStore = create<FinanceStore>()(
         transactions: state.transactions,
         role: state.role,
       }),
-    }
-  )
+    },
+  ),
 );

@@ -30,8 +30,10 @@ export default function RecentTransactions() {
     <div className="rounded-xl border border-border bg-card p-5">
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h2 className="font-semibold text-white">Recent Transactions</h2>
-          <p className="text-xs text-zinc-500 mt-0.5">Latest activity</p>
+          <h2 className="font-semibold text-foreground">Recent Transactions</h2>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Latest activity
+          </p>
         </div>
         <Link
           href="/transactions"
@@ -61,7 +63,7 @@ export default function RecentTransactions() {
                 )}
               </div>
               <div className="min-w-0">
-                <p className="truncate text-sm font-medium text-zinc-200">
+                <p className="truncate text-sm font-medium text-foreground">
                   {t.description}
                 </p>
                 <div className="flex items-center gap-2 mt-0.5">
@@ -69,12 +71,12 @@ export default function RecentTransactions() {
                     className={clsx(
                       "rounded px-1.5 py-0.5 text-xs font-medium",
                       CATEGORY_COLORS[t.category] ||
-                        "bg-zinc-700 text-zinc-300",
+                        "bg-secondary text-muted-foreground",
                     )}
                   >
                     {t.category}
                   </span>
-                  <span className="text-xs text-zinc-600">
+                  <span className="text-xs text-muted-foreground">
                     {formatDate(t.date)}
                   </span>
                 </div>

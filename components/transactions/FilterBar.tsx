@@ -30,7 +30,7 @@ export default function FilterBar() {
       <div className="relative flex-1 min-w-[200px]">
         <Search
           size={14}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
         />
         <input
           type="text"
@@ -92,7 +92,7 @@ export default function FilterBar() {
       {hasActiveFilters && (
         <button
           onClick={resetFilters}
-          className="flex items-center gap-1.5 rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-400 hover:text-white hover:border-zinc-500 transition-colors"
+          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
         >
           <X size={14} />
           Reset

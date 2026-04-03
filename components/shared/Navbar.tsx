@@ -14,6 +14,7 @@ import {
 import clsx from "clsx";
 
 import { ThemeToggle } from "./ThemeToggle";
+import StorageActions from "./StorageActions";
 
 const navLinks = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -26,7 +27,7 @@ export default function Navbar() {
   const { role, setRole } = useFinanceStore();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-background/80 backdrop-blur-md text-foreground">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md text-foreground">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -47,8 +48,8 @@ export default function Navbar() {
               className={clsx(
                 "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors",
                 pathname === href
-                  ? "bg-zinc-100 dark:bg-zinc-800 text-foreground"
-                  : "text-zinc-500 hover:text-foreground hover:bg-zinc-100/60 dark:hover:bg-zinc-800/60",
+                  ? "bg-secondary text-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/60",
               )}
             >
               <Icon size={15} />
@@ -59,9 +60,10 @@ export default function Navbar() {
 
         {/* Action area */}
         <div className="flex items-center gap-3">
+          <StorageActions />
           <ThemeToggle />
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-2 py-1.5">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-2 py-1.5">
             {role === "admin" ? (
               <Shield size={14} className="text-amber-500" />
             ) : (
@@ -70,7 +72,7 @@ export default function Navbar() {
             <select
               value={role}
               onChange={(e) => setRole(e.target.value as Role)}
-              className="bg-transparent text-sm text-zinc-600 dark:text-zinc-300 outline-none cursor-pointer"
+              className="bg-transparent text-sm text-foreground/80 outline-none cursor-pointer"
             >
               <option value="viewer">Viewer</option>
               <option value="admin">Admin</option>

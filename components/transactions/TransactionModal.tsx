@@ -190,7 +190,7 @@ export default function TransactionModal({ transaction, onClose }: Props) {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="flex-1 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-zinc-950 hover:bg-primary/90 transition-colors"
+              className="flex-1 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-zinc-50 hover:bg-primary/90 transition-colors"
             >
               {isEditing ? "Update" : "Add"}
             </button>

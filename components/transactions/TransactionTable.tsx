@@ -37,7 +37,7 @@ export default function TransactionTable() {
       {/* Desktop view */}
       <div className="hidden lg:block overflow-hidden rounded-xl border border-border bg-card">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-border bg-zinc-50/50 dark:bg-zinc-800/50 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <thead className="border-b border-border bg-secondary/50 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             <tr>
               <th className="px-6 py-4">Date</th>
               <th className="px-6 py-4">Description</th>
@@ -55,7 +55,7 @@ export default function TransactionTable() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   key={t.id}
-                  className="group hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+                  className="group hover:bg-secondary/30 transition-colors"
                 >
                   <td className="px-6 py-4 text-muted-foreground whitespace-nowrap">
                     {formatDate(t.date)}

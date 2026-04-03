@@ -8,7 +8,6 @@ import {
   formatCurrency,
   getBalance,
   getTotalIncome,
-  getTotalExpenses,
 } from "@/lib/utils";
 import {
   TrendingDown,
@@ -31,7 +30,7 @@ export default function InsightsContent() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {/* Highest spending */}
         {highestCategory && (
           <motion.div
@@ -59,7 +58,7 @@ export default function InsightsContent() {
           </motion.div>
         )}
 
-        {/* Savings status */}
+        {/* Overall Balance */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,14 +85,46 @@ export default function InsightsContent() {
               <p className="mt-1 text-lg font-bold text-foreground">
                 {balance >= 0 ? "Positive Portfolio" : "Negative Portfolio"}
               </p>
-              <p
-                className={clsx(
-                  "mt-0.5 text-sm font-medium",
-                  balance >= 0 ? "text-emerald-400" : "text-red-400",
+              <div className="flex items-center gap-2 mt-0.5">
+                <p
+                  className={clsx(
+                    "text-sm font-medium",
+                    balance >= 0 ? "text-emerald-400" : "text-red-400",
+                  )}
+                >
+                  {formatCurrency(Math.abs(balance))}{" "}
+                  {balance >= 0 ? "surplus" : "deficit"}
+                </p>
+                {totalIncome > 0 && balance > 0 && (
+                  <span className="text-[10px] font-bold bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded">
+                    {Math.round((balance / totalIncome) * 100)}% Saved
+                  </span>
                 )}
-              >
-                {formatCurrency(Math.abs(balance))}{" "}
-                {balance >= 0 ? "surplus" : "deficit"}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Total Income */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="rounded-xl border border-border bg-card p-5"
+        >
+          <div className="flex items-start gap-3">
+            <div className="rounded-lg bg-emerald-500/10 p-2.5">
+              <TrendingUp size={18} className="text-emerald-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                Total Revenue
+              </h3>
+              <p className="mt-1 text-lg font-bold text-foreground">
+                {formatCurrency(totalIncome)}
+              </p>
+              <p className="mt-0.5 text-sm text-emerald-400 font-medium">
+                Lifetime earnings
               </p>
             </div>
           </div>
@@ -104,7 +135,7 @@ export default function InsightsContent() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.25 }}
             className="rounded-xl border border-border bg-card p-5"
           >
             <div className="flex items-start gap-3">
@@ -174,7 +205,7 @@ export default function InsightsContent() {
                   </span>
                 </div>
               </div>
-              <div className="h-1.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
+              <div className="h-1.5 w-full rounded-full bg-secondary overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${cat.percentage}%` }}
