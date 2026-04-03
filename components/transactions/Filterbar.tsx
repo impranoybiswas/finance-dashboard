@@ -37,15 +37,17 @@ export default function FilterBar() {
           placeholder="Search transactions..."
           value={filters.search}
           onChange={(e) => setFilter("search", e.target.value)}
-          className="w-full rounded-lg border border-zinc-800 bg-zinc-900 pl-9 pr-4 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 outline-none focus:border-zinc-600 transition-colors"
+          className="w-full rounded-lg border border-border bg-card pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary/50 transition-colors"
         />
       </div>
 
       {/* Category filter */}
       <select
         value={filters.category}
-        onChange={(e) => setFilter("category", e.target.value as Category | "All")}
-        className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300 outline-none focus:border-zinc-600 transition-colors cursor-pointer"
+        onChange={(e) =>
+          setFilter("category", e.target.value as Category | "All")
+        }
+        className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors cursor-pointer"
       >
         {CATEGORIES.map((c) => (
           <option key={c} value={c}>
@@ -57,8 +59,10 @@ export default function FilterBar() {
       {/* Type filter */}
       <select
         value={filters.type}
-        onChange={(e) => setFilter("type", e.target.value as TransactionType | "All")}
-        className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300 outline-none focus:border-zinc-600 transition-colors cursor-pointer"
+        onChange={(e) =>
+          setFilter("type", e.target.value as TransactionType | "All")
+        }
+        className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors cursor-pointer"
       >
         <option value="All">All Types</option>
         <option value="income">Income</option>
@@ -69,11 +73,14 @@ export default function FilterBar() {
       <select
         value={`${filters.sortBy}-${filters.sortOrder}`}
         onChange={(e) => {
-          const [by, order] = e.target.value.split("-") as ["date" | "amount", "asc" | "desc"];
+          const [by, order] = e.target.value.split("-") as [
+            "date" | "amount",
+            "asc" | "desc",
+          ];
           setFilter("sortBy", by);
           setFilter("sortOrder", order);
         }}
-        className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300 outline-none focus:border-zinc-600 transition-colors cursor-pointer"
+        className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors cursor-pointer"
       >
         <option value="date-desc">Newest First</option>
         <option value="date-asc">Oldest First</option>

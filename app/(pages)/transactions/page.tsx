@@ -26,7 +26,7 @@ export default function TransactionsPage() {
         {isAdmin ? (
           <button
             onClick={() => setShowModal(true)}
-            className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-zinc-950 hover:bg-emerald-400 transition-colors shrink-0"
+            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-zinc-950 hover:bg-primary/90 transition-colors shrink-0"
           >
             <Plus size={16} />
             Add Transaction

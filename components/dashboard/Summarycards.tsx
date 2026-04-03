@@ -28,9 +28,9 @@ export default function SummaryCards() {
       label: "Total Balance",
       value: formatCurrency(balance),
       icon: Wallet,
-      iconBg: "bg-emerald-500/10",
-      iconColor: "text-emerald-400",
-      valueColor: balance >= 0 ? "text-emerald-400" : "text-red-400",
+      iconBg: "bg-primary/10",
+      iconColor: "text-primary",
+      valueColor: balance >= 0 ? "text-primary" : "text-red-400",
       trend: null,
       sub: "Net position",
     },
@@ -81,7 +81,7 @@ export default function SummaryCards() {
         return (
           <div
             key={card.label}
-            className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 transition-colors hover:border-zinc-700"
+            className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700"
           >
             <div className="flex items-start justify-between">
               <div>

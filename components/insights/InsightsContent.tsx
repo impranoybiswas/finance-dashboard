@@ -51,7 +51,7 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded-lg border border-zinc-700 bg-zinc-900 p-3 text-sm shadow-xl">
+      <div className="rounded-lg border border-border bg-card p-3 text-sm shadow-xl">
         <p className="font-medium text-zinc-300 mb-1">{label}</p>
         {payload.map((p) => (
           <div key={p.dataKey} className="flex items-center gap-2">
@@ -88,7 +88,7 @@ export default function InsightsPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {/* Highest spending */}
         {highestCategory && (
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+          <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-start gap-3">
               <div className="rounded-lg bg-red-500/10 p-2.5">
                 <AlertCircle size={18} className="text-red-400" />
@@ -146,7 +146,7 @@ export default function InsightsPage() {
 
         {/* Monthly comparison */}
         {comparison && (
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+          <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-start gap-3">
               <div
                 className={clsx(
@@ -206,7 +206,8 @@ export default function InsightsPage() {
             barGap={4}
           >
             <CartesianGrid
-              stroke="#27272a"
+              stroke="currentColor"
+              className="text-zinc-200 dark:text-zinc-800"
               strokeDasharray="3 3"
               vertical={false}
             />
@@ -241,7 +242,7 @@ export default function InsightsPage() {
       </div>
 
       {/* Category breakdown table */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+      <div className="rounded-xl border border-border bg-card p-5">
         <div className="mb-4">
           <h2 className="font-semibold text-white">Category Analysis</h2>
           <p className="text-xs text-zinc-500 mt-0.5">
@@ -265,7 +266,7 @@ export default function InsightsPage() {
                   </span>
                 </div>
               </div>
-              <div className="h-1.5 w-full rounded-full bg-zinc-800">
+              <div className="h-1.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-800">
                 <div
                   className="h-1.5 rounded-full transition-all"
                   style={{

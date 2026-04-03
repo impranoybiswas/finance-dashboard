@@ -62,15 +62,15 @@ export default function TransactionModal({ transaction, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
+      <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
-          <h2 className="font-semibold text-white">
+        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+          <h2 className="font-semibold text-foreground">
             {isEditing ? "Edit Transaction" : "Add Transaction"}
           </h2>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
+            className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
           >
             <X size={16} />
           </button>
@@ -79,7 +79,7 @@ export default function TransactionModal({ transaction, onClose }: Props) {
         {/* Body */}
         <div className="p-5 flex flex-col gap-4">
           {/* Type toggle */}
-          <div className="flex rounded-lg border border-zinc-800 p-1 gap-1">
+          <div className="flex rounded-lg border border-border p-1 gap-1">
             {(["expense", "income"] as TransactionType[]).map((t) => (
               <button
                 key={t}
@@ -88,9 +88,9 @@ export default function TransactionModal({ transaction, onClose }: Props) {
                   "flex-1 rounded-md py-1.5 text-sm font-medium capitalize transition-colors",
                   form.type === t
                     ? t === "income"
-                      ? "bg-emerald-500 text-zinc-950"
+                      ? "bg-emerald-500 text-white"
                       : "bg-red-500 text-white"
-                    : "text-zinc-500 hover:text-zinc-300",
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {t}
@@ -100,7 +100,7 @@ export default function TransactionModal({ transaction, onClose }: Props) {
 
           {/* Description */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-zinc-400">
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Description
             </label>
             <input
@@ -110,13 +110,13 @@ export default function TransactionModal({ transaction, onClose }: Props) {
                 setForm((f) => ({ ...f, description: e.target.value }))
               }
               placeholder="e.g. Monthly salary"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 outline-none focus:border-zinc-600 transition-colors"
+              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary/50 transition-colors"
             />
           </div>
 
           {/* Amount */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-zinc-400">
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Amount (BDT)
             </label>
             <input
@@ -127,13 +127,13 @@ export default function TransactionModal({ transaction, onClose }: Props) {
               }
               placeholder="0"
               min="0"
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 outline-none focus:border-zinc-600 transition-colors"
+              className="mt-1.5 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors"
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-zinc-400">
+            <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
               Category
             </label>
             <select
@@ -141,7 +141,7 @@ export default function TransactionModal({ transaction, onClose }: Props) {
               onChange={(e) =>
                 setForm((f) => ({ ...f, category: e.target.value as Category }))
               }
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300 outline-none focus:border-zinc-600 transition-colors cursor-pointer"
+              className="mt-1.5 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors cursor-pointer"
             >
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>
@@ -153,14 +153,14 @@ export default function TransactionModal({ transaction, onClose }: Props) {
 
           {/* Date */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-zinc-400">
+            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Date
             </label>
             <input
               type="date"
               value={form.date}
               onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300 outline-none focus:border-zinc-600 transition-colors"
+              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors"
             />
           </div>
 
@@ -168,16 +168,17 @@ export default function TransactionModal({ transaction, onClose }: Props) {
         </div>
 
         {/* Footer */}
-        <div className="flex gap-3 border-t border-zinc-800 px-5 py-4">
+        <div className="flex gap-3 border-t border-border px-5 py-4">
           <button
             onClick={onClose}
-            className="flex-1 rounded-lg border border-zinc-700 py-2 text-sm text-zinc-400 hover:text-white transition-colors"
+            className="flex-1 rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-accent transition-colors"
           >
             Cancel
           </button>
           <button
+            type="submit"
             onClick={handleSubmit}
-            className="flex-1 rounded-lg bg-emerald-500 py-2 text-sm font-medium text-zinc-950 hover:bg-emerald-400 transition-colors"
+            className="flex-1 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-zinc-950 hover:bg-primary/90 transition-colors"
           >
             {isEditing ? "Update" : "Add"}
           </button>

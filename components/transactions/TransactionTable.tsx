@@ -51,10 +51,10 @@ export default function TransactionTable() {
       )}
 
       {/* Desktop table */}
-      <div className="hidden md:block rounded-xl border border-zinc-800 bg-zinc-900 overflow-hidden">
+      <div className="hidden md:block rounded-xl border border-border bg-card overflow-hidden">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-zinc-800">
+            <tr className="border-b border-border">
               {[
                 "Date",
                 "Description",
@@ -72,7 +72,7 @@ export default function TransactionTable() {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-800">
+          <tbody className="divide-y divide-border">
             {transactions.map((t) => (
               <tr key={t.id} className="hover:bg-zinc-800/40 transition-colors">
                 <td className="px-4 py-3 text-sm text-zinc-400 whitespace-nowrap">
@@ -145,7 +145,7 @@ export default function TransactionTable() {
         {transactions.map((t) => (
           <div
             key={t.id}
-            className="rounded-xl border border-zinc-800 bg-zinc-900 p-4"
+            className="rounded-xl border border-border bg-card p-4"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
