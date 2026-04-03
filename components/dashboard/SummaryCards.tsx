@@ -15,6 +15,7 @@ import {
   ArrowDownRight,
 } from "lucide-react";
 import clsx from "clsx";
+import { motion } from "motion/react";
 
 export default function SummaryCards() {
   const { transactions } = useFinanceStore();
@@ -40,7 +41,7 @@ export default function SummaryCards() {
       icon: TrendingUp,
       iconBg: "bg-blue-500/10",
       iconColor: "text-blue-400",
-      valueColor: "text-white",
+      valueColor: "text-foreground",
       trend: {
         icon: ArrowUpRight,
         color: "text-emerald-400",
@@ -54,7 +55,7 @@ export default function SummaryCards() {
       icon: TrendingDown,
       iconBg: "bg-red-500/10",
       iconColor: "text-red-400",
-      valueColor: "text-white",
+      valueColor: "text-foreground",
       trend: {
         icon: ArrowDownRight,
         color: "text-red-400",
@@ -68,7 +69,7 @@ export default function SummaryCards() {
       icon: Wallet,
       iconBg: "bg-purple-500/10",
       iconColor: "text-purple-400",
-      valueColor: "text-white",
+      valueColor: "text-foreground",
       trend: null,
       sub: "Of total income",
     },
@@ -76,16 +77,19 @@ export default function SummaryCards() {
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {cards.map((card) => {
+      {cards.map((card, index) => {
         const Icon = card.icon;
         return (
-          <div
+          <motion.div
             key={card.label}
-            className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.4, ease: "easeOut" }}
+            className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/30"
           >
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   {card.label}
                 </p>
                 <p
@@ -96,13 +100,13 @@ export default function SummaryCards() {
                 >
                   {card.value}
                 </p>
-                <p className="mt-1 text-xs text-zinc-600">{card.sub}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{card.sub}</p>
               </div>
               <div className={clsx("rounded-lg p-2.5", card.iconBg)}>
                 <Icon size={18} className={card.iconColor} />
               </div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>

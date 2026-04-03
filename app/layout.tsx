@@ -8,9 +8,11 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FinanceBoard",
+  title: "Finance Board",
   description: "Personal finance dashboard",
 };
+
+import PageWrapper from "@/components/providers/PageWrapper";
 
 export default function RootLayout({
   children,
@@ -24,14 +26,16 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-            {children}
-          </main>
+          <div className="min-h-screen bg-background transition-colors duration-300">
+            <Navbar />
+            <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+              <PageWrapper>{children}</PageWrapper>
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
