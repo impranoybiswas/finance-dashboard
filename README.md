@@ -4,27 +4,34 @@ A clean, interactive, and high-performance finance dashboard built with Next.js,
 
 ## ✨ Features
 
-- **Financial Summary**: Real-time overview of Total Balance, Income, Expenses, and Savings rate.
+- **Financial Summary**: Real-time overview of Total Balance, Income, Expenses, and Savings rate (calculated dynamically).
 - **Interactive Charts**:
   - **Balance Trend**: Monthly income vs expenses visualization using area charts.
   - **Spending Breakdown**: Categorical expense analysis with interactive pie charts.
   - **Monthly Insights**: Side-by-side comparison bar charts.
-- **Transaction Management**:
+- **Advanced Transaction Management**:
   - Full CRUD operations (Add, Edit, Delete).
-  - Advanced filtering by Search, Category, and Transaction Type.
-  - Multi-criteria sorting (Date, Amount).
+  - **Advanced Filtering**: Search by description, filter by Category, Type, Date Range, and Amount Range.
+  - **Dynamic Grouping**: Organize transactions by Category or Date in both table and card views.
+  - **Multi-criteria Sorting**: Date and Amount (Asc/Desc).
 - **Role-Based UI**:
   - **Admin**: Full access to manage transactions.
   - **Viewer**: Read-only access to insights and data.
-- **Insights Engine**: Automatically calculates highest spending categories and monthly comparisons.
+- **Data Portability & Management**:
+  - **JSON Export/Import**: Full backup and restore of financial records.
+  - **CSV Export**: Download transactions in spreadsheet-ready format.
+  - **Storage Reset**: Wipe local data to start fresh.
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop views.
-- **Dark Mode**: Sleek zinc-based dark theme for a premium feel.
-- **State Persistence**: Data is saved to local storage, ensuring your progress is never lost.
+- **Premium Aesthetics**:
+  - **Modern Themes**: Sleek Light and Dark mode toggle with semantic color variables.
+  - **Fluid Animations**: Staggered list entries, chart transitions, and modal effects using Framer Motion.
+- **Reliable Persistence**: State synchronization with local storage and SSR hydration safety.
 
 ## 🚀 Tech Stack
 
 - **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Charts**: [Recharts](https://recharts.org/)
 - **State Management**: [Zustand](https://github.com/pmndrs/zustand)
@@ -69,4 +76,4 @@ A clean, interactive, and high-performance finance dashboard built with Next.js,
 
 ---
 
-Built with ❤️ for excellence in financial tracking.
+

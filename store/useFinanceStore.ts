@@ -9,7 +9,13 @@ interface Filters {
   type: TransactionType | "All";
   sortBy: "date" | "amount";
   sortOrder: "asc" | "desc";
+  startDate?: string;
+  endDate?: string;
+  minAmount?: string;
+  maxAmount?: string;
 }
+
+type GroupBy = "none" | "category" | "date";
 
 interface FinanceStore {
   transactions: Transaction[];
@@ -28,6 +34,8 @@ interface FinanceStore {
   getFilteredTransactions: () => Transaction[];
   resetStore: () => void;
   importData: (transactions: Transaction[]) => void;
+  groupBy: GroupBy;
+  setGroupBy: (groupBy: GroupBy) => void;
 }
 
 const defaultFilters: Filters = {
@@ -95,6 +103,26 @@ export const useFinanceStore = create<FinanceStore>()(
           result = result.filter((t) => t.type === filters.type);
         }
 
+        if (filters.startDate) {
+          result = result.filter(
+            (t) => new Date(t.date) >= new Date(filters.startDate!),
+          );
+        }
+
+        if (filters.endDate) {
+          result = result.filter(
+            (t) => new Date(t.date) <= new Date(filters.endDate!),
+          );
+        }
+
+        if (filters.minAmount) {
+          result = result.filter((t) => t.amount >= Number(filters.minAmount));
+        }
+
+        if (filters.maxAmount) {
+          result = result.filter((t) => t.amount <= Number(filters.maxAmount));
+        }
+
         result.sort((a, b) => {
           if (filters.sortBy === "date") {
             const diff =
@@ -120,6 +148,9 @@ export const useFinanceStore = create<FinanceStore>()(
         set({
           transactions: transactions,
         }),
+
+      groupBy: "none",
+      setGroupBy: (groupBy) => set({ groupBy }),
     }),
     {
       name: "finance-dashboard-store",
