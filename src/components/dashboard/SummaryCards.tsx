@@ -83,27 +83,60 @@ export default function SummaryCards() {
           <motion.div
             key={card.label}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.4, ease: "easeOut" }}
-            className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/30"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -4, scale: 1.02 }}
+            transition={{
+              delay: index * 0.1,
+              duration: 0.5,
+              ease: [0.23, 1, 0.32, 1],
+            }}
+            className="glass glass-hover rounded-2xl p-6 group cursor-default"
           >
             <div className="flex items-start justify-between">
-              <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              <div className="space-y-1">
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest opacity-80 group-hover:opacity-100 transition-opacity">
                   {card.label}
                 </p>
-                <p
-                  className={clsx(
-                    "mt-2 text-2xl font-bold tracking-tight",
-                    card.valueColor,
+                <div className="flex items-baseline gap-2">
+                  <p
+                    className={clsx(
+                      "text-2xl font-black tracking-tight transition-all duration-300",
+                      card.valueColor,
+                      card.label === "Total Balance" && "text-gradient",
+                    )}
+                  >
+                    {card.value}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5 pt-1">
+                  {card.trend && (
+                    <div
+                      className={clsx(
+                        "flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-current/10",
+                        card.trend.color,
+                      )}
+                    >
+                      <card.trend.icon size={10} className="mr-0.5" />
+                      {card.trend.label}
+                    </div>
                   )}
-                >
-                  {card.value}
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">{card.sub}</p>
+                  <span className="text-[10px] font-medium text-muted-foreground/60">
+                    {card.sub}
+                  </span>
+                </div>
               </div>
-              <div className={clsx("rounded-lg p-2.5", card.iconBg)}>
-                <Icon size={18} className={card.iconColor} />
+              <div
+                className={clsx(
+                  "rounded-xl p-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-inner",
+                  card.iconBg,
+                  "shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]",
+                )}
+              >
+                <Icon
+                  size={20}
+                  className={clsx(card.iconColor, "drop-shadow-sm")}
+                />
               </div>
             </div>
           </motion.div>

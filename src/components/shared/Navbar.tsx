@@ -14,7 +14,7 @@ import {
 import clsx from "clsx";
 
 import { ThemeToggle } from "./ThemeToggle";
-import StorageActions from "./StorageActions";
+import StorageActions from "@/features/StorageActions";
 
 const navLinks = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },

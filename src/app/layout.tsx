@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 import Navbar from "@/components/shared/Navbar";
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Personal finance dashboard",
 };
 
-import PageWrapper from "@/components/providers/PageWrapper";
+import PageWrapper from "@/components/layout/PageWrapper";
 
 export default function RootLayout({
   children,

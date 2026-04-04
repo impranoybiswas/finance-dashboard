@@ -36,3 +36,19 @@ export interface CategoryBreakdown {
   amount: number;
   percentage: number;
 }
+
+export interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    payload: {
+      category: string;
+      amount: number;
+      percentage: number;
+    };
+    dataKey: string;
+    value: number;
+    color: string;
+  }>;
+  label?: string;
+}
+

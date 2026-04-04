@@ -36,10 +36,48 @@
   --color-card: hsl(var(--card));
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-gradient-shift: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/60 backdrop-blur-md border border-border/50 shadow-sm transition-all duration-300;
+  }
+
+  .glass-hover {
+    @apply hover:bg-background/80 hover:border-border hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-tr from-primary via-accent to-primary bg-[length:200%_auto];
+    animation: var(--animate-gradient-shift);
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  @apply selection:bg-primary/20 selection:text-primary;
+}
+
+.chart-container .recharts-cartesian-grid-horizontal line,
+.chart-container .recharts-cartesian-grid-vertical line {
+  stroke: hsl(var(--border) / 0.3);
+}
+
+.chart-container .recharts-tooltip-cursor {
+  fill: hsl(var(--primary) / 0.05);
 }
