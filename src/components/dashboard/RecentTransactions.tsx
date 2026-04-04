@@ -49,7 +49,7 @@ export default function RecentTransactions() {
         {recent.map((t) => (
           <div
             key={t.id}
-            className="flex items-center justify-between py-3.5 px-3 rounded-xl hover:bg-muted/30 transition-all duration-300 group/item cursor-default border border-transparent hover:border-border/40"
+            className="flex items-center justify-between py-3.5 px-3 rounded-xl hover:bg-muted/10 transition-all duration-300 group/item cursor-default border border-transparent hover:border-border/40"
           >
             <div className="flex items-center gap-4 min-w-0">
               <div

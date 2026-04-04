@@ -72,7 +72,7 @@ export default function TransactionTable() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       key={t.id}
-                      className="group hover:bg-secondary/30 transition-colors"
+                      className="group hover:bg-secondary/30 transition-colors even:bg-secondary/10"
                     >
                       <td className="px-6 py-4 text-muted-foreground whitespace-nowrap">
                         {formatDate(t.date)}

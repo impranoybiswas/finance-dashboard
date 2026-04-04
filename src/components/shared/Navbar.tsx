@@ -31,11 +31,11 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-zinc-950 font-bold text-sm">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/50 border border-primary text-primary font-bold text-sm">
             F
           </div>
           <span className="font-semibold tracking-tight hidden sm:block">
-            FinanceBoard
+            Finance Board
           </span>
         </div>
 
@@ -72,10 +72,14 @@ export default function Navbar() {
             <select
               value={role}
               onChange={(e) => setRole(e.target.value as Role)}
-              className="bg-transparent text-sm text-foreground/80 outline-none cursor-pointer"
+              className="bg-transparent text-sm text-foreground/80 outline-none cursor-pointer font-medium"
             >
-              <option value="viewer">Viewer</option>
-              <option value="admin">Admin</option>
+              <option value="viewer" className="bg-background text-foreground">
+                Viewer
+              </option>
+              <option value="admin" className="bg-background text-foreground">
+                Admin
+              </option>
             </select>
           </div>
         </div>
