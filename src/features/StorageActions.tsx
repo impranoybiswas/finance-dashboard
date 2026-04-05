@@ -79,7 +79,7 @@ export default function StorageActions() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center rounded-lg border border-border bg-secondary/50 h-8 px-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+        className="flex items-center justify-center gap-2 rounded-lg border border-border bg-secondary/50 h-8 px-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
       >
         <Download size={14} />
         <span className="text-sm font-medium hidden sm:block">Data</span>
