@@ -1,6 +1,8 @@
 # FinanceBoard — Premium Finance Dashboard
-
 A clean, interactive, and high-performance finance dashboard built with Next.js, Zustand, and Recharts. Track your income, expenses, and savings with ease.
+
+# Live Preview
+[https://finance-dashboard-zeta-jade.vercel.app/](https://finance-dashboard-zeta-jade.vercel.app/)
 
 ## ✨ Features
 

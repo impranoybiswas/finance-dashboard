@@ -35,13 +35,11 @@ export default function DashboardPage() {
       className="flex flex-col gap-8 pb-10"
     >
       {/* Page title */}
-      <motion.div variants={item}>
-        <h1 className="text-3xl font-black text-foreground tracking-tight drop-shadow-sm">
-          Welcome Back
-        </h1>
-        <p className="text-sm font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mt-1.5 ml-0.5">
-          Financial Intelligence Dashboard
-        </p>
+      <motion.div
+        variants={item}
+        className="text-sm font-semibold text-muted-foreground/60 uppercase tracking-[0.2em] mt-1.5 ml-0.5"
+      >
+        Financial Intelligence Dashboard
       </motion.div>
 
       {/* Summary cards */}
